@@ -261,13 +261,13 @@ $(document).ready(function(){
 });		
 </script>
   
-<!-- <script>
+<script>
 $(document).ready(function(){
   selected = $('select[name="inforroom"]');
-  $(selected).change(function()}
-    $("#selected-show span").html(selected.val());
-  )};
-)};
-</script> -->
+  $(selected).change(function(){
+$("#selected-show span").html(selected.val());
+  });
+});
+</script>
 </body>
 </html>
