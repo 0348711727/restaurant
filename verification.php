@@ -6,7 +6,6 @@
 
     if(isset($_POST['email']))
     {
-		
 		$link = Verify::generateLink();
     	$message = "{$user->firstName}, Your account has been created, Vist this link to verify your account : <a href='http://localhost:88/restaurant/verification/{$link}'>Verify Link</a>";
 		$verifyObj->sendToMail($user->email, $message);
@@ -39,6 +38,35 @@
 	if(isset($_POST['phone']))
 	{
 		$number = Validate::escape($_POST['number']);
+		if(!empty($number))
+		{
+			if(preg_match("/^([0-9]+)$/",$number))
+			{
+				$number = urlencode($number);
+				$code = $verifyObj->generateCode();
+				$message = "$user->firstName, tai khoan cua ban da duoc tao, code : {$code} ";
+				$result = $verifyObj->sendToPhone($number,$message); 
+				$userObj->insert('verification', array('user_id' => $user_id, 'code' => $code));
+
+				if($result)
+				{
+    				$userObj->update('users', array('phone' => $number), array('user_id' => $user_id));
+    				$userObj->redirect('/verification/phone');
+				}
+				else
+				{
+    				$errors['phone'] = "Bị lỗi , thử cách còn lại !";
+    			}
+			}
+			else
+			{
+				$errors['phone'] = "Chỉ được nhập số";
+			}
+		}
+		else
+		{
+			$errors['phone'] = "Nhập số điện thoại của bạn để nhận code";
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -66,16 +94,16 @@
 						}
 						else{
 					?>
-				<h4>Your account has been created, you need to activate your account by following methods:</h4>
+				<h4>Tài khoản của bạn đã được tạo , hãy chọn 1 trong 2 cách sau đây để kích hoạt tài khoản của bạn</h4>
 				<fieldset>
-				<legend>Method 1</legend>
+				<legend>Cách 1</legend>
 				<?php if(isset($_GET['mail'])): ?>
 					<h4>Email xác nhận đã được gửi vào hòm thư của bạn , hãy kiểm tra email để xác minh tài khoản</h4>
 				<?php else: ?>
 				<form method="POST" action="verification.php">
-				<h3>Email verificaiton</h3>
+				<h3>Email Verification</h3>
 				<input type="email" name="email" disabled placeholder="<?php echo $user->email;?>" value="<?php echo $user->email;?>"/>
- 				<button type="submit" name="email" class="suc">Send me verification email</button>
+ 				<button type="submit" name="email" class="suc">Gửi email cho tôi</button>
 				</form>
 				<?php endif; ?>
 				</fieldset>
@@ -86,12 +114,12 @@
                 <?php endif; ?>
 			
 				<fieldset>
-					<legend>Method 2</legend>
+					<legend>Cách 2</legend>
 				<div>
-					<h3>Phone verificaiton</h3>
+					<h3>Phone Verification</h3>
 					<form method="POST">
-					<input type="tel" name="number" placeholder="Enter your Phone number"/>
-					<button type="submit" name="phone" class="suc">Send verification code via SMS</button>
+					<input type="tel" name="number" placeholder="Nhập số điện thoại của bạn"/>
+					<button type="submit" name="phone" class="suc">Gửi code bằng số điện thoại</button>
 					</form>
 				</div>
  				</fieldset>

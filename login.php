@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
     <link rel="stylesheet" href="assets/css/signup-style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     
@@ -81,7 +82,7 @@
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Sign In</h2>
+                        <h2 class="form-title">Login Guest</h2>
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -97,6 +98,7 @@
                                 <input type="submit" name="login" id="signin" class="form-submit" value="Login"/>
                             </div>
                             <div class="r-pass">
+                                <br>
                                 <a href="account/recovery/">I forget my Password</a>
                             </div>
                             <div class="social-login">
@@ -108,17 +110,20 @@
                             </ul>
                         </div>
                         </form>
+                        
                         <?php if(isset($error)): ?>
 			            <div class="error shake-horizontal"><?php echo $error; ?></div>
-			            <?php endif; ?>
+                        <?php endif; ?>
+                        
 			            </div>
                         
                         
                     </div>
                 </div>
+                <center><p>Copyright © 2020 by SaiGon Restaurant & Hotel  <a href=""></a></p></center>
             </div>
         </section>
-        <center><p>Copyright © 2020 by SaiGon Restaurant & Hotel  <a href=""></a></p></center>
+        
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery/jquery-ui.min.js"></script>
