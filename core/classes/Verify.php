@@ -77,30 +77,32 @@
 		
 		public function sendToPhone($number,$message)
 		{
-			$username = "ohmybaby1999@gmail.com";
-			$apiHash  = "5f65b7088d74d9366b6c0bf6adaf7b34ba1b583f9c74580e29c01326b283ac36";
-			$apiUrl   = "https://api.txtlocal.com/send/";
-			$test     = '0';
-			$data     = "username={$username}&hash={$apiHash}&message={$message}&numbers={$number}&test={$test}";
-
 			if(!empty($number))
 			{
-				$ch = curl_init($apiUrl);
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				$respone = curl_exec($ch);
+				$curl = curl_init();
 
-				$result = json_decode($respone);
-				//var_dump($respone);
-				if($result->status === 'success')
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+
+				curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://api.twilio.com/2010-04-01/Accounts/ACa0524f378593e6a630d31d0d0189220b/Messages.json',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'To=%2B'.$number.'&From=%2B12076058525&Body='.$message,
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Basic QUNhMDUyNGYzNzg1OTNlNmE2MzBkMzFkMGQwMTg5MjIwYjoyYzk0OWQ4MmM5Y2U3OThiMTcyZTNlM2JiNTkyOGNmOA==',
+					'Content-Type: application/x-www-form-urlencoded'
+				),
+				));
+
+				$response = curl_exec($curl);
+				
+				curl_close($curl);
+				echo $response;
+				//return true;
 			}
 		}
     }
