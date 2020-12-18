@@ -1,13 +1,15 @@
 <?php 
-  session_start();
+  include 'core/init.php';
+  include('source/mysource.php');
   // Kiểm tra nếu có session rồi nếu nhập /login.php chuyển về giao diện trang chủ
-  // $_SESSION['user']==true;
+  // $_SESSION['user']==true ;
+  // $_SESSION['user_id']==true;
   // ob_start();
   // if($_SESSION['user'] != true)
   // {
   //   header("LOCATION:login.php");
   // }
-  
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,15 +79,16 @@
                 
                 
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-              <?php if(isset($_SESSION['user'])){ ?>
+              <?php if(isset($_SESSION['user']) || isset($_SESSION['user_id'])){ ?>
                 <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Meal</a></li>
                 <li class="nav-item"><a class="nav-link" href="book-room.php">Book A Room</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><?php echo $_SESSION["name"]; ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><?php if(isset($_SESSION['user'])){echo $_SESSION["name"];}else{echo $_SESSION['firstname'];} ?></a></li>
 
               <?php }else{ ?>
                 <li class="nav-item"><a class="nav-link" href="register.php">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="adminlogin.php">Admin Login</a></li>
               <?php } ?>
               <li class="nav-item"><a class="nav-link" href="chatbot.php">Chat</a></li>
             </ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php 
-  session_start();
+  include 'core/init.php';
   include('source/mysource.php');
   $p = new restaurant();
 
@@ -90,8 +90,9 @@ button:hover {
 $ta=$p-> xuatphong("select * from room");
 ?>
 <input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
-<?php foreach($ta as $key=>$val){ ?>
+
     <select class="datphong" name="inforroom">
+    <?php foreach($ta as $key=>$val){ ?>
 		<option value="<?php echo $val['name']; ?>">
 			<div class="tab" style="border: 1px solid black;">
 					<div class="product-item">
@@ -100,10 +101,17 @@ $ta=$p-> xuatphong("select * from room");
 		  	</div>
       </option>
       <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
-		<?php } ?>  
-    </select> 
+      <?php } ?>  
+    </select>
+
+        <select name="inforroom">
+          <?php foreach($ta as $key=>$val){ ?>
+          <option value="<?php echo $val['name']; ?>"><?php echo $val['name']; ?></option>
+          <?php } ?>
+        </select>
+
 		  <div id="selected-show"> 
-      abc:<span>Tên phòng: <h4><?php echo $val['name']; ?></h4> 
+            abc:<span>Tên phòng: <h4><?php echo $val['name']; ?></h4> 
             <img src="assets/images/<?php echo $val['hinh'];?>" alt=""></br> 
 			      Giá phòng: <h6><?php  echo $val['gia']?></h6><br></span>
 		  </div>

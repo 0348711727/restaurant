@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
-  session_start();
+  include 'core/init.php';
+  include('source/mysource.php');
  ?>
 <html lang="en">
 

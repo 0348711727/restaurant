@@ -1,5 +1,6 @@
 <?php 
 require_once "source/mysource.php";
+include 'core/init.php';
 $p =new restaurant();
 if(isset($_POST['user']))
 {

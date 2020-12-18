@@ -1,5 +1,14 @@
 <?php
-	include 'core/init.php';
+    include('source/mysource.php');
+    include 'core/init.php';
+    if(isset($_SESSION['user_id']) || isset($_SESSION['user']))
+    {
+        echo'<script>window.location="index.php"</script>';
+    }
+    else
+    {
+
+    }
 	if($userObj->isLoggedIn())
 	{
 		$userObj->redirect('/home.php');
@@ -21,13 +30,15 @@
 			}
 			else
 			{
-				if($user = $userObj -> emailExist($email))
+				if($user = $userObj->emailExist($email))
 				{
-					$hash = $user -> password ;
+					$hash = $user->password ;
 					if(password_verify($password, $hash))
 					{
 						//login
-						$_SESSION['user_id'] = $user -> user_id ;
+                        $_SESSION['user_id'] = $user->user_id ;
+                        $_SESSION['firstname'] = $user->firstName ;
+                        print_r($_SESSION['firstname']);
 						$userObj -> redirect('/home.php');
 					}
 					else

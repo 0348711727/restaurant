@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('source/mysource.php');
+  include 'core/init.php';
+  include('source/mysource.php');
   $p = new restaurant();
   $p -> ketnoicsdl();
 ?>

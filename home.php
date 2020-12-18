@@ -1,8 +1,19 @@
 <?php
-    include 'core/init.php';
-    $user_id = $_SESSION['user_id'];
-	$user = $userObj -> userData($user_id);
-	
+	include 'core/init.php';
+	include('source/mysource.php');
+//	echo $_SESSION['phanquyen'];
+	if(isset($_SERVER['phanquyen'])||isset($_SESSION['user_id']))
+	{
+		if($_SESSION['phanquyen'] == 5 )
+		{
+			echo"<script>window.location='admin-template.php'</script>";
+		}
+		else
+		{
+			$user_id = $_SESSION['user_id'];
+			$user = $userObj -> userData($user_id);
+		}
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -46,7 +57,8 @@
 				</div><!--profile-content ends-->
 
 				<div class="profile-footer">
-					<button class="log-out" onclick="location.href='includes/logout.php';">Log out</button>
+					<a class="btn btn-success" href="logout.php">Log Out</a>
+					<!-- <button class="log-out" onclick="location.href='includes/logout.php';">Log out</button> -->
 					<button class="setting" onclick="location.href='account/settings';">Settings</button>
 				</div><!--profile-footer ends-->
 

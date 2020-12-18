@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
-  session_start();
-  include("source/mysource.php");
+  include 'core/init.php';
+  include('source/mysource.php');
   $p = new restaurant;
  ?>
 <html lang="en">
@@ -36,18 +36,19 @@
   </head>
 
   <body>
-
+  <?php   
+$ta=$p-> xuatphong("select * from room");
+?>
   <div class="container mt-5">
     <form action="" method="post" class="mb-3">
       <div class="select-block">
+      
         <select name="Fruit">
-          <option value="" disabled selected>Choose option</option>
-          <option value="Apple">Apple</option>
-          <option value="Banana">Banana</option>
-          <option value="Coconut">Coconut</option>
-          <option value="Blueberry">Blueberry</option>
-          <option value="Strawberry">Strawberry</option>
+        <?php foreach($ta as $key=>$val){ ?>
+          <option value="<?php echo $val['name']; ?>"><?php echo $val['name']; ?></option>
+          <?php } ?>
         </select>
+      
         <div class="selectIcon">
           <svg focusable="false" viewBox="0 0 104 128" width="25" height="35" class="icon">
             <path d="m2e1 95a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm14 55h68v1e1h-68zm0-3e1h68v1e1h-68zm0-3e1h68v1e1h-68z"></path>
