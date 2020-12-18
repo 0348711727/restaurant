@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Phone Verification</title>
+    <title>Phone Verification</title>
+    
 	<link rel="stylesheet" href="<?php echo BASE_URL;?>/assets/css/style2.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
