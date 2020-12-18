@@ -56,43 +56,42 @@ class restaurant
 			else
 			{
 				echo '<script>alert("Đăng nhập không thành công ! Xin mời đăng nhập lại !");</script>';
-				echo '<script>window.location = "login.php";</script>';	
+				echo '<script>window.location = "adminlogin.php";</script>';	
 			}
 		}
-		function dangky($name, $user, $email, $pass, $repass)
-		{
-			$link = $this->ketnoicsdl();
-			$pass=md5($pass);
-			if($name == "" || $user =="" || $email == "" || $pass =="" || $repass == "")
-			{
-				echo '<script>alert("Vui lòng nhập đầy đủ thông tin");</script>';
-			}
-			else
-			{ 
-				$sql ="Select * from account where user = '$user' or email = '$email'";
-				$result = mysqli_query($link, $sql);
-				$a = mysqli_num_rows($result);
-				if($a >0)
-				{
-					echo '<script>alert("Tài khoản hoặc email đã tồn tại");</script>';
-				}
-				else
-				{
-					$sql1 ="Insert into account(id, name, user, email, pass, phanquyen)
-					values(' ','$name','$user','$email','$pass','1')";
-					if(mysqli_query($link, $sql1))
-					{
-						echo '<script>alert("Đăng ký thành công");</script>';
-					    echo '<script>window.location="login.php";</script>';
-					}
-					else
-					{
-						echo '<script>alert("Đăng ký không thành công");</script>';
-					}
-				}
-			}
-		}
-
+		// function dangky($name, $user, $email, $pass, $repass)
+		// {
+		// 	$link = $this->ketnoicsdl();
+		// 	$pass=md5($pass);
+		// 	if($name == "" || $user =="" || $email == "" || $pass =="" || $repass == "")
+		// 	{
+		// 		echo '<script>alert("Vui lòng nhập đầy đủ thông tin");</script>';
+		// 	}
+		// 	else
+		// 	{ 
+		// 		$sql ="Select * from account where user = '$user' or email = '$email'";
+		// 		$result = mysqli_query($link, $sql);
+		// 		$a = mysqli_num_rows($result);
+		// 		if($a >0)
+		// 		{
+		// 			echo '<script>alert("Tài khoản hoặc email đã tồn tại");</script>';
+		// 		}
+		// 		else
+		// 		{
+		// 			$sql1 ="Insert into account(id, name, user, email, pass, phanquyen)
+		// 			values(' ','$name','$user','$email','$pass','1')";
+		// 			if(mysqli_query($link, $sql1))
+		// 			{
+		// 				echo '<script>alert("Đăng ký thành công");</script>';
+		// 			    echo '<script>window.location="login.php";</script>';
+		// 			}
+		// 			else
+		// 			{
+		// 				echo '<script>alert("Đăng ký không thành công");</script>';
+		// 			}
+		// 		}
+		// 	}
+		// }
 		public function logout(){
 			if(isset($_SESSION["user"]))
 			{
