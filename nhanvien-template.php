@@ -3,6 +3,21 @@
   include('source/mysource.php');
   $p = new restaurant();
   $p -> ketnoicsdl();
+  if(isset($_SESSION['user_id']))
+  {
+        echo "<script>window.location='index.php'</script>";
+  }
+  elseif(isset($_SESSION['phanquyen']))
+  {
+      if($_SESSION['phanquyen'] == 2)
+      {
+        
+      }
+      else
+      {
+        echo "<script>window.location='adminlogin.php';</script>";
+      }
+  }
 ?>
 <html>
 <head>
@@ -29,41 +44,20 @@
 	<img src="assets/images/<?php echo $_SESSION['anhdaidien'];?>" class="profile-image" alt="Anh dai dien">
 	<h4><?php echo $_SESSION['name']; ?></h4>
 	</center>
+
     <?php 
 		if(isset($_SESSION['user']) && isset($_SESSION['phanquyen']))
 		{
-			if($_SESSION['phanquyen'] == 3)
-			{
-            echo '<a href="#">Thống kê doanh thu</a><br>';
-            echo '<a href="#">Quản lý đơn hàng</a><br>';
-            echo '<a href="#">Quản lý hóa đơn</a><br>';
+			if($_SESSION['phanquyen'] == 2){
+            echo '<a href="#">Xem hóa đơn</a><br>';
+			echo '<a href="#">Thống kê doanh thu</a><br>';
 		}
-	}
+		}
 		else{
-			echo '<script>window.location= "login.php";</script>';
+			echo '<script>window.location= "adminlogin.php";</script>';
 		}
 ?>
 
-	
-<?php
-$sql ="select * from account";
-$ta=$p-> themxoasua($sql);
-foreach($ta as $key=>$val)
-{
-
-?>
-	<div class="content">
-	<form action="" method="">
-<table>
-<td>Họ tên<?php echo $val['name'];  ?></td>
-<td>Email</td>
-<td>SDT</td>
-<td></td>
-<td></td>
-	</table>
-	</form>
-	</div>
-<?php }?>
 </body>
 
 </html>

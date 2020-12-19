@@ -2,7 +2,12 @@
 	include 'core/init.php';
 	include('source/mysource.php');
 //	echo $_SESSION['phanquyen'];
-	if(isset($_SERVER['phanquyen'])||isset($_SESSION['user_id']))
+	if(isset($_SESSION['user_id']))
+	{
+		$user_id = $_SESSION['user_id'];
+			$user = $userObj -> userData($user_id);
+	}
+	elseif(isset($_SESSION['phanquyen']))
 	{
 		if($_SESSION['phanquyen'] == 5 )
 		{
@@ -10,11 +15,9 @@
 		}
 		else
 		{
-			$user_id = $_SESSION['user_id'];
-			$user = $userObj -> userData($user_id);
+			
 		}
 	}
-	
 ?>
 <!DOCTYPE html>
 <html>

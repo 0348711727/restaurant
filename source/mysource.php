@@ -32,17 +32,17 @@ class restaurant
 					if($row['phanquyen'] == 2)
 					{
 						echo '<script>alert("Đăng nhập thành công");</script>';
-						echo '<script>window.location= "quanly-template.php";</script>';
+						echo '<script>window.location= "nhanvien-template.php";</script>';
 					}
 					elseif($row['phanquyen'] == 3)
 					{
 						echo '<script>alert("Đăng nhập thành công");</script>';
-						echo '<script>window.location= "nhanvien-template.php";</script>';
+						echo '<script>window.location= "admin-template.php";</script>';
 					}
 					elseif($row['phanquyen'] == 5 )
 					{
 						echo '<script>alert("Đăng nhập thành công");</script>';
-						echo '<script>window.location= "admin-template.php";</script>';
+						echo '<script>window.location= "quantri-template.php";</script>';
 					}
 					else
 					{

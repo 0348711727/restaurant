@@ -3,26 +3,27 @@
   include('source/mysource.php');
   $p = new restaurant();
   $p -> ketnoicsdl();
+  if(isset($_SESSION['user_id']))
+  {
+        echo "<script>window.location='index.php'</script>";
+  }
+  elseif(isset($_SESSION['phanquyen']))
+  {
+      if($_SESSION['phanquyen'] == 3)
+      {
+        
+      }
+      else
+      {
+        echo "<script>window.location='adminlogin.php';</script>";
+      }
+  }
 ?>
 <html>
 <head>
 <base href="http://localhost:88/restaurant/"/>
 <link rel="stylesheet" href="assets/css/stylead.css">
 <link rel="stylesheet" href="assets/css/updatenv.css">
-<style>
-table, tr,td, th
-{
-	border: 1px solid black;
-}
-table
-{
-	border:1px solid black;
-	border-collapse: collapse;
-	margin-left:300px;
-	margin-top: -100px;
-}
-
-</style>
 </head>
 <body>
 <header>
@@ -43,49 +44,20 @@ table
 	<img src="assets/images/<?php echo $_SESSION['anhdaidien'];?>" class="profile-image" alt="Anh dai dien">
 	<h4><?php echo $_SESSION['name']; ?></h4>
 	</center>
-	<?php 
-		if(isset($_SESSION['user']))
+    <?php 
+		if(isset($_SESSION['user']) && isset($_SESSION['phanquyen']))
 		{
-			if($_SESSION['phanquyen']==5)
+			if($_SESSION['phanquyen'] == 3)
 			{
-			echo '<a href="updatenv.php">Cập nhật thông tin nhân viên</a>';
+            echo '<a href="#">Thống kê doanh thu</a><br>';
+            echo '<a href="#">Quản lý đơn hàng</a><br>';
+            echo '<a href="#">Quản lý hóa đơn</a><br>';
 		}
-		}
+	}
 		else{
-			echo '<script>window.location= "login.php";</script>';
+			echo '<script>window.location= "adminlogin.php";</script>';
 		}
 ?>
-<table style="border:1px solid black;">	
-<?php
-$sql ="select * from account where phanquyen != 1";
-if(isset($_GET["id"])){
-	$id= $_GET['id'];
-}
-$ta=$p-> themxoasua($sql);
-?>
-<table>
-	<tr>
-		<th>Tên</th>
-		<th>User</th>
-		<th>Email</th>
-		<th>Phân Quyền</th>
-		<th>Hình Đại Diện</th>
-		<th>Action</th>
-	</tr>
-	<?php
-		foreach($ta as $key=>$val)
-		{?>
-		<tr>
-			<td><?php echo $val['name']; ?></td>
-			<td><?php echo $val['user']; ?></td>
-			<td><?php echo $val['email']; ?></td>
-			<td><?php echo $val['phanquyen']; ?></td>
-			<td><?php echo $val['anhdaidien']; ?></td>
-			<td><a href="edit.php?id=<?php echo $val['id']; ?>">Sửa</td>
-			</tr>
-		<?php } ?>
-</table>
-
 </body>
 
 </html>

@@ -3,6 +3,25 @@
   include('source/mysource.php');
   $p = new restaurant();
   $p -> ketnoicsdl();
+  if(isset($_SESSION['user_id']))
+  {
+        echo "<script>window.location='index.php'</script>";
+  }
+  elseif(isset($_SESSION['phanquyen']))
+  {
+      if($_SESSION['phanquyen'] == 5)
+      {
+        echo "<script>window.location='quantri-template.php';</script>";
+      }
+      elseif($_SESSION['phanquyen'] == 3)
+      {
+        echo "<script>window.location='admin-template.php';</script>";
+      }
+      else
+      {
+        echo "<script>window.location='nhanvien-template.php';</script>";
+      }
+  }
   // Kiểm tra nếu có session rồi nếu nhập /login.php chuyển về giao diện trang chủ          
 ?>
 <head>

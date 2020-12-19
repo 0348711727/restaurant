@@ -6,10 +6,10 @@ $p = new restaurant;
 $id = $_POST['idphong'];
 $ta=$p->detailroom($id);
 foreach($ta as $key=>$val){ 
-	echo $val['idroom'];
 	echo'<img src="assets/images/'.$val['hinh'].'">';
-	echo $val['idroom'];
-	echo $val['idroom'];
+	echo $val['gia'];
+	echo $val['name'];
+	echo $val['mota'];
 }
 ?>
 <html>

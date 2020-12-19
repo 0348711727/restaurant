@@ -89,28 +89,15 @@ button:hover {
 <?php   
 $ta=$p-> xuatphong("select * from room");
 ?>
-<input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
-
-    <select class="datphong" name="inforroom">
-    <?php foreach($ta as $key=>$val){ ?>
-		<option value="<?php echo $val['name']; ?>">
-			<div class="tab" style="border: 1px solid black;">
-					<div class="product-item">
-          <h4><?php echo $val['name'];?></h4> 
-					</div>
-		  	</div>
-      </option>
-      <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
-      <?php } ?>  
-    </select>
-
         <select name="inforroom">
           <?php foreach($ta as $key=>$val){ ?>
-          <option value="<?php echo $val['name']; ?>"><?php echo $val['name']; ?></option>
+          <option value="<?php echo $val['idroom']; ?>"><?php echo $val['name']; ?></option>
+
           <?php } ?>
         </select>
-
-		  <div id="selected-show"> 
+        <input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
+        <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
+		  <div id="showroom"> 
             abc:<span>Tên phòng: <h4><?php echo $val['name']; ?></h4> 
             <img src="assets/images/<?php echo $val['hinh'];?>" alt=""></br> 
 			      Giá phòng: <h6><?php  echo $val['gia']?></h6><br></span>
@@ -132,7 +119,7 @@ $ta=$p-> xuatphong("select * from room");
   </div>
   <div class="tab">
   Xem chi tiết phòng đã chọn<b/r>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <button id ="showall" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   View Detail Room
 </button>
 <!-- The Modal -->
@@ -148,11 +135,7 @@ $ta=$p-> xuatphong("select * from room");
         <!-- Modal body -->
         <center>
         <div class="modal-body">
-            Tên phòng: <h4><?php echo $val['name'] ?></h4> 
-            <img src="assets/images/<?php echo $val['hinh'];?>" alt=""></br>
-            Thời gian đặt: 
-			      Giá phòng: <h6><?php  echo $val['gia']?></h6><br>
-         
+            
         </div>
         </center>
         <!-- Modal footer -->
@@ -255,27 +238,31 @@ function fixStepIndicator(n) {
 </script>
 <script>
 $(document).ready(function(){
-    $("select.datphong").change(function(){
-        var selecteddatphong = $(this).children("option:selected").val();
+  selected = $('select[name="inforroom"]');
+  $(selected).change(function(){
       	$.ajax({
 			url:"showroom.php",
 			method: "post",
-			data: {idphong: selecteddatphong},
+			data: {idphong: selected.val()},
 			success: function(data){
 				$('#showroom').html(data);
 			}
 		});
     });
+
+    $('#showall').on('click', function(){
+      $('.modal-body').html("hello con cho");
+    });
 });		
 </script>
   
-<script>
+<!-- <script>
 $(document).ready(function(){
   selected = $('select[name="inforroom"]');
   $(selected).change(function(){
 $("#selected-show span").html(selected.val());
   });
 });
-</script>
+</script> -->
 </body>
 </html>
