@@ -25,6 +25,8 @@
 	<base href="http://localhost:88/restaurant/"/>
 	<title>Home</title>
 	<link rel="stylesheet" href="assets/css/style2.css"/>
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 <div class="home-wrapper">

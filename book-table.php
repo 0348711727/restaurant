@@ -99,76 +99,68 @@
       </div>
     </div>
 
-    <div class="send-message">
+    <section class="ftco-section bg-light">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
-            </div>
+        <div class="row no-gutters justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2>Choose a Reservation Date and Time</h2>
           </div>
-          <div class="col-md-8">
-            <div class="contact-form">
-              <form id="contact" action="" method="post">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <fieldset>
-                      <input name="name" type="text" class="form-control" id="date" placeholder="16.06.2020" required="">
-                    </fieldset>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <fieldset>
-                      <input name="name" type="text" class="form-control" id="date" placeholder="09:00" required="">
-                    </fieldset>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <fieldset>
-                      <select class="form-control">
-                       <option value="">1</option>
-                       <option value="">2</option>
-                       <option value="">3</option>
-                       <option value="">4</option>
-                       <option value="">5</option>
-                       <option value="">6</option>
-                       <option value="">7</option>
-                      </select>
-                    </fieldset>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <fieldset>
-                      <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <fieldset>
-                      <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12">
-                    <fieldset>
-                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Notes" required=""></textarea>
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12">
-                    <fieldset>
-                      <button type="submit" id="form-submit" class="filled-button">Check Availability</button>
-                    </fieldset>
+        </div>
+            
+            <form action="choose-table.php" method="POST">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" name="reservation_name" class="form-control" placeholder="Your Name" required="" value="<?php echo $_SESSION['firstname'];?>">
                   </div>
                 </div>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <img src="assets/images/team_01.jpg" class="img-fluid" alt="">
-
-            <h5 class="text-center" style="margin-top: 15px;">John Doe</h5>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="reservation_phone" class="form-control" placeholder="Phone" required="" value="<?php echo $_SESSION['phone'];?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Date</label>
+                    <input type="date" name="reservation_date" class="form-control" placeholder="Date" required="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Time</label>
+                    <select name="reservation_time" class="form-control" placeholder="Time" required="">
+                      <option value="10:00am">10:00am</option>
+                      <option value="10:45am">10:45am</option>
+                      <option value="11:30am">11:30am</option>
+                      <option value="12:15pm">12:15pm</option>
+                      <option value="1:15pm">1:15pm</option>
+                      <option value="2:15pm">2:15pm</option>
+                      <option value="3:15pm">3:15pm</option>
+                      <option value="4:15pm">4:15pm</option>
+                      <option value="5:15pm">5:15pm</option>
+                      <option value="6:15pm">6:15pm</option>
+                      <option value="7:15pm">7:15pm</option>
+                      <option value="8:00pm">8:00pm</option>
+                      <option value="8:45pm">8:45pm</option>
+                      <option value="9:30pm">9:30pm</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-12 mt-3">
+                  <div class="form-group">
+                    <input type="hidden" name="res_id" value="<?php echo $_GET['res_id']; ?>">
+                    <input type="submit" name="reservation" value="Submit" class="btn btn-primary py-3 px-5">
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <footer>
       <div class="container">
