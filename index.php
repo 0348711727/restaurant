@@ -79,17 +79,26 @@
                 
                 
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-              <?php if(isset($_SESSION['user']) || isset($_SESSION['user_id'])){ ?>
-                <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Meal</a></li>
-                <li class="nav-item"><a class="nav-link" href="book-room.php">Book A Room</a></li>
-                <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><?php if(isset($_SESSION['user'])){echo $_SESSION["name"];}else{echo $_SESSION['firstname'];} ?></a></li>
+              <?php 
+              if(isset($_SESSION['user']) || isset($_SESSION['user_id'])){ 
+                ?>
+                  <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Meal</a></li>
+                  <li class="nav-item"><a class="nav-link" href="book-room.php">Book A Room</a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                  <li class="nav-item"><a class="nav-link" href="home.php">
+                  <?php 
+                    if(isset($_SESSION['user'])){echo $_SESSION["name"];}else{echo $_SESSION['firstname'];} 
+                  ?></a></li>
 
-              <?php }else{ ?>
+              <?php }
+              else
+              { 
+                ?>
                 <li class="nav-item"><a class="nav-link" href="register.php">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="adminlogin.php">Admin Login</a></li>
-              <?php } ?>
+              <?php 
+             }  ?>
               <li class="nav-item"><a class="nav-link" href="chatbot.php">Chat</a></li>
             </ul>
           </div>
