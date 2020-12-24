@@ -98,24 +98,22 @@ $ta=$p-> xuatphong("select * from room");
         <input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
         <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
 		  <div id="showroom"> 
-            abc:<span>Tên phòng: <h4><?php echo $val['name']; ?></h4> 
-            <img src="assets/images/<?php echo $val['hinh'];?>" alt=""></br> 
-			      Giá phòng: <h6><?php  echo $val['gia']?></h6><br></span>
+            
 		  </div>
       <center>
   </div>	  
   <div class="tab">Chọn số người:
     <select name="songuoi">
-    <option value="0">Chọn số người</option>
+    <option value="1">Chọn số người</option>
     <option value="1">1 Người</option>
     <option value="2">2 Người</option>
     <option value="3">3 Người</option>
     </select>
   </div>
   <div class="tab">Chọn khung thời gian:
-    <p><input type="datetime"></p>
-    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+    <p><input id ="date" value="1" type="text"></p>
+    <p><input id ="month" value="2" placeholder="mm" oninput="this.className = ''" name="nn"></p>
+    <p><input id="year" value="2020" placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
   </div>
   <div class="tab">
   Xem chi tiết phòng đã chọn<b/r>
@@ -248,14 +246,39 @@ $(document).ready(function(){
 				$('#showroom').html(data);
 			}
 		});
-    });
-
-    $('#showall').on('click', function(){
-      $('.modal-body').html("hello con cho");
-    });
+    });  
 });		
 </script>
-  
+  <script>
+    $(document).ready(function(){
+      $('#showall').on('click', function(){
+      selected1 =$('select[name="inforroom"]').val();
+      selected2 =$('select[name="songuoi"]').val();
+      day = $('#date').val();
+      month = $('#month').val();
+      year = $('#year').val();
+      $.ajax({
+			url:"showall.php",
+			method: "post",
+			data: {idphong: selected.val()},
+			success: function(data){
+				$('.modal-body').html(data);
+        $('.modal-body').append("<div>"+"Số người: "+ selected2+"</div>");
+        $('.modal-body').append("<div>"+date+"</div>");
+        $('.modal-body').append("<div>"+month+"</div>");
+        $('.modal-body').append("<div>"+year+"</div>");
+			}
+		});
+      
+    });
+    });
+    
+    
+</script>
+
+
+
+
 <!-- <script>
 $(document).ready(function(){
   selected = $('select[name="inforroom"]');
