@@ -112,12 +112,10 @@ $ta=$p-> xuatphong("select * from room");
     <option value="3">3 Người</option>
     </select>
   </div>
-  <div class="tab">Chọn khung thời gian:<br>
-                    <label for="">Đến</label>
-                    <input type="date" name="reservation_date" class="form-control" placeholder="Date" required="" >
-
-                    <label for="">Rời Khỏi</label>
-                    <input type="date" name="reservation_date" class="form-control" placeholder="Date" required="" >
+  <div class="tab">Chọn khung thời gian:
+    <p><input type="datetime"></p>
+    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
+    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
   </div>
   <div class="tab">
   Xem chi tiết phòng đã chọn<b/r>
