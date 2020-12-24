@@ -1,8 +1,14 @@
-<!DOCTYPE html>
 <?php 
   include 'core/init.php';
   include('source/mysource.php');
- ?>
+
+  if (!Users::isLoggedIn())
+  {
+    echo '<script>alert("You need to login first.")</script>';
+    echo '<script>window.location="login.php"</script>';
+  }
+?>
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -112,7 +118,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" name="reservation_name" class="form-control" placeholder="Your Name" required="" value="<?php echo $_SESSION['firstname'];?>">
+                    <input type="text" name="reservation_name" class="form-control" placeholder="Your Name" required="" value="<?php echo $_SESSION['firstname'].' '.$_SESSION['lastname'];?>">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -124,7 +130,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Date</label>
-                    <input type="date" name="reservation_date" class="form-control" placeholder="Date" required="">
+                    <input type="date" name="reservation_date" class="form-control" placeholder="Date" required="" >
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -151,8 +157,9 @@
                 
                 <div class="col-md-12 mt-3">
                   <div class="form-group">
-                    <input type="hidden" name="res_id" value="<?php echo $_GET['res_id']; ?>">
+                    <input type="hidden" name="res_id" value="4">
                     <input type="submit" name="reservation" value="Submit" class="btn btn-primary py-3 px-5">
+
                   </div>
                 </div>
               </div>

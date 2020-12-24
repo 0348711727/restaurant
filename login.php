@@ -9,13 +9,9 @@
     {
 
     }
-	if($userObj->isLoggedIn())
-	{
-		$userObj->redirect('/home.php');
-	}
 	Database::instance()->prepare('select * from users')->execute();
-	//$user = $userObj -> get('users',array('user_id' => 1));
-	//echo $user -> username;
+	// $user = $userObj -> get('users',array('user_id' => 1));
+	// echo $user->username;
 	if(isset($_POST['login'])){
 		$email = Validate::escape($_POST['email']);
 		$password = Validate::escape($_POST['password']);
@@ -38,8 +34,11 @@
 						//login
                         $_SESSION['user_id'] = $user->user_id ;
                         $_SESSION['firstname'] = $user->firstName ;
-                        print_r($_SESSION['firstname']);
-						$userObj -> redirect('/home.php');
+                        $_SESSION['lastname'] = $user->lastName;
+                        $_SESSION['phone'] = $user->phone;
+                        $_SESSION['email'] = $user->email;
+                        // $_SESSION['timenow'] = date("Y-M-D H:i:s");
+						$userObj -> redirect('/index.php');
 					}
 					else
 					{

@@ -10,6 +10,7 @@
 	});
 	$userObj   = new Users;
 	$verifyObj = new Verify;
+	$tableObj  = new Table;
 	//session
 	session_start(); 
 ?>
