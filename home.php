@@ -18,6 +18,12 @@
 			
 		}
 	}
+
+	if (!Users::isLoggedIn())
+  {
+    echo '<script>alert("You need to login first.")</script>';
+    echo '<script>window.location="login.php"</script>';
+  }
 ?>
 <!DOCTYPE html>
 <html>
