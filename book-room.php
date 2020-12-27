@@ -15,6 +15,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 <style>
 * {
 box-sizing: border-box;
@@ -79,7 +82,6 @@ button:hover {
 }
 </style>
 <body>
-
 <form id="regForm" action="bookroom-xuly.php" method="POST">
 <a href="index.php" style="text-decoration:none;">🏠Back to home</a>
 <h2>Chào mừng bạn. Hãy đặt cho mình một căn phòng đi nào </h2></br>
@@ -87,15 +89,17 @@ button:hover {
 	  <center>
     <div class="tab">Đặt phòng:
 <?php   
-$ta=$p-> xuatphong("select * from room");
+$ta=$p-> xuatphong();
 ?>
         <select name="inforroom">
+          <option value="0" id ="defaultvaluechonphong">Chọn phòng</option>
           <?php foreach($ta as $key=>$val){ ?>
-          <option value="<?php echo $val['idroom']; ?>"><?php echo $val['name']; ?></option>
-
+          <option  value="<?php echo $val['idroom']; ?>"><?php echo $val['name']; ?></option>
+          
           <?php } ?>
         </select>
         <input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
+        <input type="hidden" name="name" value="<?php echo $val['name']; ?>">
         <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
 		  <div id="showroom"> 
             
@@ -111,9 +115,10 @@ $ta=$p-> xuatphong("select * from room");
     </select>
   </div>
   <div class="tab">Chọn khung thời gian:
-    <p><input id ="date" value="1" type="text"></p>
-    <p><input id ="month" value="2" placeholder="mm" oninput="this.className = ''" name="nn"></p>
-    <p><input id="year" value="2020" placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+    <label for="">Thời gian bắt đầu đặt</label>
+      <input type="text" id="depart" placeholder="Nhận phòng" >
+    <label for="">Thời gian rời đi</label>
+      <input type="text" id="return" placeholder="Trả phòng" >
   </div>
   <div class="tab">
   Xem chi tiết phòng đã chọn<b/r>
@@ -236,6 +241,13 @@ function fixStepIndicator(n) {
 </script>
 <script>
 $(document).ready(function(){
+  $('#nextBtn').bind('click',function(){
+    if( $('select[name="inforroom"]').val() == 0)
+    {
+      alert("Bạn phải chọn phòng khi qua bước sau");
+      window.location = "book-room.php";
+    }
+  });
   selected = $('select[name="inforroom"]');
   $(selected).change(function(){
       	$.ajax({
@@ -243,8 +255,16 @@ $(document).ready(function(){
 			method: "post",
 			data: {idphong: selected.val()},
 			success: function(data){
+        if(data[0] == '1')
+        {
+          alert("Phòng này đã có ");
+          window.location = "book-room.php";
+        }
+        else
+        {
 				$('#showroom').html(data);
 			}
+    }
 		});
     });  
 });		
@@ -254,31 +274,55 @@ $(document).ready(function(){
       $('#showall').on('click', function(){
       selected1 =$('select[name="inforroom"]').val();
       selected2 =$('select[name="songuoi"]').val();
-      day = $('#date').val();
-      month = $('#month').val();
-      year = $('#year').val();
+      depart = $('#depart').val();
+      returnroom = $('#return').val();
       $.ajax({
 			url:"showall.php",
 			method: "post",
-			data: {idphong: selected.val()},
+			data: {idphong: selected1,
+            songuoi:selected2,
+            tgnhan:depart,
+            tgtraphong:returnroom},
 			success: function(data){
 				$('.modal-body').html(data);
-        $('.modal-body').append("<div>"+"Số người: "+ selected2+"</div>");
-        $('.modal-body').append("<div>"+date+"</div>");
-        $('.modal-body').append("<div>"+month+"</div>");
-        $('.modal-body').append("<div>"+year+"</div>");
+        $('.modal-body').append("<div>"+"Số người : "+ selected2+"</div>");
+        $('.modal-body').append("<div>"+"Thời gian nhận phòng : "+ depart +" 1:00"+"</div>"); 
+        $('.modal-body').append("<div>"+"Thời gian trả phòng : "+ returnroom +" 12:00"+"</div>"); 
 			}
 		});
       
     });
     });
     
-    
+
 </script>
-
-
-
-
+<!-- Kiểm tra ngày tháng k được chọn ngày quá khứ -->
+<script>
+  $(document).ready(function(){
+    var minDate = new Date();
+    $("#depart").datepicker({
+      showAnim: 'drop',
+      minDate : minDate,
+      numberOfMonth:1,
+      dateFormat:'dd/mm/yy',
+      onClose:function(selectedDate){
+        $('#return').datepicker("option", "minDate", selectedDate);
+      }
+    });
+  });
+  $(document).ready(function(){
+    var minDate = new Date();
+    $("#return").datepicker({
+      showAnim: 'drop',
+      minDate : minDate,
+      numberOfMonth:1,
+      dateFormat:'dd/mm/yy',
+      onClose:function(selectedDate){
+        $('#return').datepicker("option", "minDate", selectedDate);
+      }
+    });
+  });
+</script>
 <!-- <script>
 $(document).ready(function(){
   selected = $('select[name="inforroom"]');

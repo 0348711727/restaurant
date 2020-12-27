@@ -123,9 +123,9 @@ class restaurant
 			$tv =mysqli_query($link, "update account set name ='$name', user='$user', email='$email',phanquyen='$phanquyen' where id='$id'");
 			return $tv;
 		}
-		public function xuatphong($sql){
+		public function xuatphong(){
 			$link =$this->ketnoicsdl();
-			$tv1 =mysqli_query($link, "Select * from room");
+			$tv1 =mysqli_query($link, "Select * from room where stt = 0");
 			$tv2 =mysqli_fetch_all($tv1, MYSQLI_ASSOC);
 			return $tv2;
 		}
@@ -135,11 +135,18 @@ class restaurant
 			$tv1 =mysqli_query($link, "Select * from room where idroom = ".$id."");
 			return $tv1;
 	}
-	public function bookroom($inforroom,$songuoi, $gia){
+	public function bookroom($name, $gia, $depart,$returnroom,$songuoi,$inforroom){
 		$link = $this->ketnoicsdl();
-		$tv1 = mysqli_query($link, "insert into hoadon(id, thongtin, songuoi, thoigian, gia) 
-		value('','$inforroom','$songuoi','','$gia')");
+		$tv1 = mysqli_query($link, "insert into hoadon(id, thongtin, gia, tgnhan, tgtra,songuoi, statusroom, idroom) 
+		value('','$name','$gia','$depart','$returnroom','$songuoi','1', '$inforroom')");
+		$last_id = mysqli_insert_id($link);
+		if(isset($last_id))
+		{
+			$tv2 = mysqli_query($link, "update room set stt = 1 where idroom = '$inforroom'");
+		}   
+		return $last_id;
 	}
+	
 	public function chatbot()
 	{	
 		$link = $this->ketnoicsdl();
