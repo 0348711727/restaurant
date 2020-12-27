@@ -15,8 +15,8 @@
     $lastid= $p ->bookroom($name, $gia, $depart,$returnroom,$songuoi, $inforroom);
     if(isset($lastid)){
 
-        // echo "<script>alert('Đặt phòng thành công');</script>";
-        // echo "<script>window.location='index.php';</script>";
+        echo "<script>alert('Đặt phòng thành công');</script>";
+        echo "<script>window.location='index.php';</script>";
     }
     
   }
