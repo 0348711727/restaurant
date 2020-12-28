@@ -1,40 +1,39 @@
-<?php 
-  include 'core/init.php';
-  include('source/mysource.php');
+<?php
+include 'core/init.php';
+include('source/mysource.php');
+include 'assets/template/header.php';
 
-  if (!Users::isLoggedIn())
-  {
-    echo '<script>alert("You need to login first.")</script>';
-    echo '<script>window.location="login.php"</script>';
-  }
+if(isset($_SESSION['user_id']))
+	{
+		$user_id = $_SESSION['user_id'];
+			$user = $userObj -> userData($user_id);
+    }
+
+if (!Users::isLoggedIn())
+{
+  echo '<script>alert("You need to login first.")</script>';
+  echo '<script>window.location="login.php"</script>';
+}
+
+if (isset($_POST['reservation']))
+{
+  $res_id = $_POST['res_id'];
+  $reservation_name = $_POST['reservation_name'];
+  $reservation_phone = $_POST['reservation_phone'];
+  $reservation_date = $_POST['reservation_date'];
+  $reservation_time = $_POST['reservation_time'];
+  $_SESSION['res_id'] = $res_id;
+}
+
+
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/images/favicon.ico">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <title>PHPJabbers.com | Free Restaurant Website Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/stepform.css">
-  </head>
+<title>Choose Table</title>
 
   <body>
-
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
