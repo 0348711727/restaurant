@@ -14,7 +14,7 @@
             if(isset($_SESSION['res_id']))
             {
                 $res_id = $_SESSION['res_id'];
-                $sql = "SELECT * FROM `restaurant_table` WHERE res_id = '$res_id'";
+                $sql = "SELECT * FROM `restaurant_table` WHERE res_id = '$res_id' AND status ='0'" ;
                 $result = $this -> db -> prepare($sql);
                 $result->execute();
                 $results = $result->fetchAll(); 
