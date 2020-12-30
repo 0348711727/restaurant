@@ -98,9 +98,6 @@ $ta=$p-> xuatphong();
           
           <?php } ?>
         </select>
-        <input type="hidden" name="idroom" value="<?php echo $val['idroom']; ?>">
-        <input type="hidden" name="name" value="<?php echo $val['name']; ?>">
-        <input type="hidden" name="txtgia" value="<?php echo $val['gia']; ?>">
 		  <div id="showroom"> 
             
 		  </div>
@@ -257,7 +254,7 @@ $(document).ready(function(){
 			success: function(data){
         if(data[0] == '1')
         {
-          alert("Phòng này đã có ");
+          alert("Phòng này đã có người đặt");
           window.location = "book-room.php";
         }
         else

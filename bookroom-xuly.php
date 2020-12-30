@@ -11,7 +11,7 @@
     $depart =$_SESSION['depart'];
     $returnroom = $_SESSION['return'];
     $name = $_POST['name'];
-    echo $inforroom;
+    echo $name;
     $lastid= $p ->bookroom($name, $gia, $depart,$returnroom,$songuoi, $inforroom);
     if(isset($lastid)){
 

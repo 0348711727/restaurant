@@ -20,6 +20,9 @@ else
 		echo 'Tên Phòng:'. $val['name']."<br>";
 		echo 'Giá:'. $val['gia']."<br>";
 		echo 'Mô tả: '. $val['mota']."<br>";
+		echo '<input type="hidden" name="name" value="'.$val["name"].'">';
+		echo '<input type="hidden" name="idroom" value="'.$val['idroom'].'">';
+        echo '<input type="hidden" name="txtgia" value="'.$val['gia'].'">';
 	}
 }
 ?>
