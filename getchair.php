@@ -1,4 +1,6 @@
 <?php
+include 'core/init.php';
+
     $abc = $_POST['radioValue'];
-    echo $abc;
+    $tableObj->
 ?>

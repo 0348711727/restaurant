@@ -1,6 +1,7 @@
 <?php 
   include 'core/init.php';
   include('source/mysource.php');
+  
   // Kiểm tra nếu có session rồi nếu nhập /login.php chuyển về giao diện trang chủ
   // $_SESSION['user']==true ;
   // $_SESSION['user_id']==true;
@@ -9,7 +10,13 @@
   // {
   //   header("LOCATION:login.php");
   // }
+  
 
+    if(isset($_SESSION['user_id']))
+    {
+        $verifyObj->checkbeforeindex();
+    }
+  
  ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,9 +1,16 @@
 <?php
 	include 'core/init.php';
     $user_id = $_SESSION['user_id'];
-	$user    = $userObj -> userData($user_id);
-	$verifyObj->authOnly();
-
+	$user    = $userObj->userData($user_id);
+	if (!Users::isLoggedIn())
+	{
+		echo '<script>alert("You need to login first.")</script>';
+		echo '<script>window.location="login.php"</script>';
+	}
+	else
+	{
+		$verifyObj->checkbeforeVerification();
+	}
     if(isset($_POST['email']))
     {
 		$link = Verify::generateLink();
@@ -50,7 +57,7 @@
 
 				if($result)
 				{
-    				$userObj->update('users', array('phone' => $number), array('user_id' => $user_id));
+    				$userObj->update('users',array('phone' => $number), array('user_id'=>$user_id));
     				$userObj->redirect('/verification/phone');
 				}
 				else
@@ -118,7 +125,7 @@
 				<div>
 					<h3>Phone Verification</h3>
 					<form method="POST">
-					<input type="tel" name="number" placeholder="Nhập số điện thoại của bạn"/>
+					+<input type="tel" name="number" placeholder="Nhập số điện thoại của bạn"/>
 					<button type="submit" name="phone" class="suc">Gửi code bằng số điện thoại</button>
 					</form>
 				</div>

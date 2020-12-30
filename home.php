@@ -1,11 +1,21 @@
 <?php
 	include 'core/init.php';
 	include('source/mysource.php');
+	if (!Users::isLoggedIn())
+	{
+		echo '<script>alert("You need to login first.")</script>';
+		echo '<script>window.location="login.php"</script>';
+	}
+	else
+	{
+		$verifyObj->checkbeforehome();
+		
+	}
 //	echo $_SESSION['phanquyen'];
 	if(isset($_SESSION['user_id']))
 	{
 		$user_id = $_SESSION['user_id'];
-			$user = $userObj -> userData($user_id);
+		$user = $userObj->userData($user_id);
 	}
 	elseif(isset($_SESSION['phanquyen']))
 	{
@@ -18,12 +28,7 @@
 			
 		}
 	}
-
-	if (!Users::isLoggedIn())
-  {
-    echo '<script>alert("You need to login first.")</script>';
-    echo '<script>window.location="login.php"</script>';
-  }
+  	
 ?>
 <!DOCTYPE html>
 <html>
