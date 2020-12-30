@@ -1,13 +1,18 @@
 <?php
-    class Verify
+
+use Twilio\Rest\Verify\V2\Service\VerificationList;
+
+class Verify
     {
         protected $db;
-        protected $user;
+		protected $user;
+		protected $verify;
 
         public function __construct() 
         {            
             $this->db = Database::instance();
-            $this->user = new Users;
+			$this->user = new Users;
+			
         }
         public function generateLink()
         {
@@ -23,28 +28,70 @@
         }
         public function authOnly(){
 			$user_id = $_SESSION['user_id'];
-			$stmt = $this->db->prepare("SELECT * FROM `verification` WHERE `user_id` = :user_id ORDER BY `createdAt` DESC");
+			$stmt = $this->db->prepare("SELECT * FROM `verification`");
 			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
 			$stmt->execute();
 			$user = $stmt->fetch(PDO::FETCH_OBJ);
-			$files = array('verification.php');
+			return $user;
+			// $files = array('verification.php','verifyCode.php');
 
-			//if(!$this->user->isLoggedIn()){
-			//	$this->user->redirect('index.php');
-			//}
+			// if($user->status === '0')
+			// {
+			// 	$this->user->redirect('/verification');
+			// }
 
-			if(!empty($user)){
-				if($user->status === '0' && !in_array(basename($_SERVER['SCRIPT_NAME']), $files)){
+			// if($user->status === '1')
+			// {
+				
+			// }
+
+		}
+		public function checkbeforehome()
+		{
+			$user = $this->authOnly();
+			if($user == false)
+			{
+				$this->user->redirect('/verification');
+			}
+			else
+			{
+				if($user->status === '0')
+				{
 					$this->user->redirect('/verification');
 				}
 
-				if($user->status === '1' && in_array(basename($_SERVER['SCRIPT_NAME']), $files)){
-					$this->user->redirect('/home.php');
+				if($user->status === '1')
+				{
+					
 				}
-			}else if (!in_array(basename($_SERVER['SCRIPT_NAME']), $files)){
+			}
+		}
+		public function checkbeforeindex()
+		{
+			$user = $this->authOnly();
+			if($user == false)
+			{
 				$this->user->redirect('/verification');
 			}
-
+		}
+		public function checkbeforeVerification()
+		{
+			$user = $this->authOnly();
+			if($user == false)
+			{
+				
+			}
+			else
+			{
+				if($user->status === '0')
+				{
+						
+				}
+				if($user->status === '1')
+				{
+					$this->user->redirect('/home.php');
+				}
+			}
 		}
         public function sendToMail($email, $message){
 			$mail  = new PHPMailer\PHPMailer\PHPMailer(true);
@@ -101,8 +148,7 @@
 				$response = curl_exec($curl);
 				
 				curl_close($curl);
-				echo $response;
-				//return true;
+				return true;
 			}
 		}
     }

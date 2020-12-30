@@ -62,7 +62,7 @@
                 $hash = $userObj -> hash($password);
                 $user_id = $userObj -> insert('users', array('firstName' => $firstName , 'lastName' => $lastName, 'username' => $username, 'email' => $email , 'password' => $hash , 'gender' => $gender , 'birthday' => $birthday ));
                 $_SESSION['user_id'] = $user_id;
-                $userObj -> redirect('/verification');
+                $userObj->redirect('/verification');
             }
         }
     }
