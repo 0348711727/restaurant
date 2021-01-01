@@ -39,7 +39,7 @@ $p = new restaurant;
 							else{
 								?>
 								<li class="messages-me clearfix start_chat">
-								   Type to start
+								   Ask me anything about our restaurant =)
 								</li>
 								<?php
 							}

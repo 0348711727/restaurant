@@ -62,26 +62,39 @@
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="about-us.php">About Us</a>
                       <a class="dropdown-item" href="blog.php">Blog</a>
-                      <a class="dropdown-item" href="testimonials.php">Testimonials</a>
+                      <a class="dropdown-item" href="Customer/donhang.php">Xem thông tin đã đặt</a>
                     </div>
                 </li>
                 
                 
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-              <?php if(isset($_SESSION['user'])){ ?>
-                <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Meal</a></li>
-                <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Room</a></li>
-                <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><?php echo $_SESSION["name"]; ?></a></li>
+              <?php 
+              if(isset($_SESSION['user']) || isset($_SESSION['user_id'])){ 
+                ?>
+                  <li class="nav-item"><a class="nav-link" href="book-table.php">Book A Meal</a></li>
+                  <li class="nav-item"><a class="nav-link" href="book-room.php">Book A Room</a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                  <li class="nav-item"><a class="nav-link" href="home.php">
+                  <?php 
+                    if(isset($_SESSION['user'])){echo $_SESSION["name"];}else{echo $_SESSION['firstname'].' '.$_SESSION['lastname'];} 
+                  ?></a></li>
 
-              <?php }else{ ?>
-                <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>
+              <?php }
+              else
+              { 
+                ?>
+                <li class="nav-item"><a class="nav-link" href="register.php">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-              <?php } ?>
+                <li class="nav-item"><a class="nav-link" href="adminlogin.php">Admin Login</a></li>
+              <?php 
+             }  ?>
+              <li class="nav-item"><a class="nav-link" href="chatbot.php">Chat</a></li>
             </ul>
           </div>
         </div>
+		  
       </nav>
+		<div data-element-name="covid19-banner" class="sc-AxirZ ifhlag"><span class="sc-AxheI elyVCV">Chúng tôi biết kế hoạch du lịch của quý khách có thể chịu ảnh hưởng của COVID-19. Hãy kiểm tra giới hạn đi lại ở địa phương trước khi đặt chuyến đi của quý khách.</span><a target="_blank" href="/vi-vn/coronavirus" data-element-name="covid19-banner-btn" class="sc-AxirZ dWUEbb"><span class="sc-AxheI elyVCV sc-AxirZ gTDyUd">Tìm hiểu thêm</span></a></div>
     </header>
 
     <!-- Page Content -->

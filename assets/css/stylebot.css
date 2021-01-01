@@ -1,3 +1,6 @@
+*{
+	padding-top:50px;
+}
 .unread {
 	cursor: pointer;
 	background-color: #f4f4f4;
