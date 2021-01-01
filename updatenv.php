@@ -2,6 +2,17 @@
 require_once "source/mysource.php";
 include 'core/init.php';
 $p =new restaurant();
+if(isset($_SESSION['phanquyen'])|| isset($_SESSION['user_id']))
+{
+	if($_SESSION['phanquyen'] != 5)
+	{
+		echo "<script>window.location='adminlogin.php'</script>";
+	}
+	else 
+	{
+		echo "<script>window.location='login.php'</script>";
+	}
+}
 ?>
 <table style="border:1px solid black;">	
 <?php
@@ -11,7 +22,6 @@ if(isset($_GET["id"])){
 }
 $ta=$p-> themxoasua($sql);
 ?>
-<table>
 	<tr>
 		<th>Tên</th>
 		<th>User</th>

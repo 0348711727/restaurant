@@ -11,8 +11,9 @@
     $depart =$_SESSION['depart'];
     $returnroom = $_SESSION['return'];
     $name = $_POST['name'];
-    echo $name;
-    $lastid= $p ->bookroom($name, $gia, $depart,$returnroom,$songuoi, $inforroom);
+    $userid = $_SESSION['user_id'];
+    echo $userid;
+    $lastid= $p ->bookroom($name, $gia, $depart,$returnroom,$songuoi, $inforroom, $userid);
     if(isset($lastid)){
 
         echo "<script>alert('Đặt phòng thành công');</script>";

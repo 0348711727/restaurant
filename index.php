@@ -81,6 +81,7 @@
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="about-us.php">About Us</a>
                       <a class="dropdown-item" href="blog.php">Blog</a>
+                      <a class="dropdown-item" href="Customer/donhang.php">Xem thông tin đã đặt</a>
                     </div>
                 </li>
                 

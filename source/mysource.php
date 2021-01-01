@@ -24,6 +24,7 @@ class restaurant
 				while($row = mysqli_fetch_array($kq))
 				{
 					session_start();
+					$_SESSION['id']= $row['id'];
 					$_SESSION['user'] = $row['user'];
 					$_SESSION['pass'] = $row['pass'];
 					$_SESSION['name'] = $row['name'];
@@ -117,6 +118,7 @@ class restaurant
 			$tv =mysqli_query($link, "select * from account where id='$id'");
 			return $tv;
 		}
+		//cập nhật thông tin tài khoản của quản trị viên
 		public function updatedetailacc($id, $name, $user, $email, $phanquyen)
 		{
 			$link=$this->ketnoicsdl();
@@ -135,10 +137,16 @@ class restaurant
 			$tv1 =mysqli_query($link, "Select * from room where idroom = ".$id."");
 			return $tv1;
 	}
-	public function bookroom($name, $gia, $depart,$returnroom,$songuoi,$inforroom){
+	public function updatedetailroom($id, $ttroom, $ttoan)
+		{
+			$link=$this->ketnoicsdl();
+			mysqli_query($link, "update hoadon set statusroom = ".$ttroom." , stt=".$ttoan." where id=".(int)$id."");
+			
+		}
+	public function bookroom($name, $gia, $depart,$returnroom,$songuoi,$inforroom, $userid){
 		$link = $this->ketnoicsdl();
-		$tv1 = mysqli_query($link, "insert into hoadon(id, thongtin, gia, tgnhan, tgtra,songuoi, statusroom, idroom) 
-		value('','$name','$gia','$depart','$returnroom','$songuoi','1', '$inforroom')");
+		$tv1 = mysqli_query($link, "insert into hoadon(id, thongtin, gia, tgnhan, tgtra,songuoi, statusroom, idroom, stt,userid) 
+		value('','$name','$gia','$depart','$returnroom','$songuoi','0', '$inforroom','0', '$userid')");
 		$last_id = mysqli_insert_id($link);
 		if(isset($last_id))
 		{
@@ -177,6 +185,11 @@ class restaurant
 			echo $html;
 		}
 	}
-	
+	public function getdetailroom($id)
+		{
+			$link=$this->ketnoicsdl();
+			$tv =mysqli_query($link, "select * from hoadon");
+			return $tv;
+		}
 	}
 ?>
