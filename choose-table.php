@@ -6,8 +6,8 @@ include 'assets/template/header.php';
 if(isset($_SESSION['user_id']))
 	{
 		$user_id = $_SESSION['user_id'];
-			$user = $userObj -> userData($user_id);
-    }
+		$user = $userObj -> userData($user_id);
+  }
 
 if (!Users::isLoggedIn())
 {
@@ -15,56 +15,85 @@ if (!Users::isLoggedIn())
   echo '<script>window.location="login.php"</script>';
 }
 
+
 if (isset($_POST['reservation']))
 {
-  $res_id = $_POST['res_id'];
-  $reservation_name = $_POST['reservation_name'];
-  $reservation_phone = $_POST['reservation_phone'];
-  $reservation_date = $_POST['reservation_date'];
-  $reservation_time = $_POST['reservation_time'];
-  $_SESSION['res_id'] = $res_id;
+  $_SESSION['res_name'] = $_POST['reservation_name'];
+  $_SESSION['res_phone'] = $_POST['reservation_phone'];
+  $_SESSION['res_date'] = $_POST['reservation_date'];
+  $_SESSION['res_time'] = $_POST['reservation_time'];
+  $_SESSION['res_id'] = $_POST['res_id'];
+  
 }
-
-
-
 ?>
 
 <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
 
 <title>Choose Table</title>
-<?php include 'assets/template/menu.php'; ?>
 <body>
   <br><br><br><br><br><br><br><br><br><br><br><br><br>
   <center>
         <form action="select-menu.php" method="POST">
             <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="text" class="form-control" id="" name="" placeholder="Email" value="<?php echo $_SESSION['email'] ?>"><br>
+              
+                <div class="form-group">
+                      <label for="">Name</label>
+                      <input type="text" name="reservation_name" class="form-control" placeholder="Your Name" value="<?php echo $_SESSION['res_name'];?>" readonly>
+                    </div>
                   </div>
-                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Phone</label>
+                      <input type="text" name="reservation_phone" class="form-control" placeholder="Phone" value="<?php echo $_SESSION['res_phone'];?>" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Date</label>
+                      <input type="date" name="reservation_date" class="form-control" placeholder="Date" value="<?php echo $_SESSION['res_date'];?>" readonly >
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Time</label>
+                      <input type="text" name="reservation_time" class="form-control" placeholder="Time" value="<?php echo $_SESSION['res_time'];?>" readonly>
+                    </div>
+                  </div>
 
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Available Table</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <?php
-                          $results = $tableObj->get();
-                          foreach($results as $table_id)
-                          {
-                            ?><option>  <?php
-                              echo $table_id['table_name'];
-                              echo '<br>';
-                            ?></option> <?php
-                          }
-                        ?>
-                    </select>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Email address</label>
+                      <input type="text" class="form-control" name="reservation_email" placeholder="Email" value="<?php echo $_SESSION['email'] ?>"><br>
+                    </div>
                   </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Available Table</label>
+                      <select class="form-control" name="reservation_table">
+                          <?php
+                            $results = $tableObj->get();
+                            foreach($results as $table_id)
+                            {
+                              ?><option>  <?php
+                                echo $table_id['table_name'];
+                                echo '<br>';
+                              ?></option> <?php
+                            }
+                          ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  
               </div>
             </div>
+            <div class="col-md-6">
+              <input type="hidden" name="res_id" value="4">
+              <input type="submit" value="Submit" name="choosetable" class="btn btn-primary py-3 px-5" >
+            </div>
         </form>
-        <div class="col-md-6">
-          <input type="submit" value="Confirm" name="selectChair" class="btn btn-primary py-3 px-5" >
-        </div>
+        
   </center>
     
             
@@ -89,21 +118,4 @@ if (isset($_POST['reservation']))
       });
       </script>
 </body>
-    <!-- <script>
-    //   $(document).ready(function(){
-    //       $(".table_check").click(function(){
-    //         var radioValue = $("input[name='table_check']:checked").val();
-    //           if(radioValue){
-    //               $.ajax({
-    //                 url:"getchair.php",
-    //                 method:"post",
-    //                 data:{radioValue:radioValue},
-    //                 success: function(data){
-    //                   $('#cc').html(data);
-    //                 }
-
-    //               });
-    //           }
-    //       });
-    //   });
-    // 
+    

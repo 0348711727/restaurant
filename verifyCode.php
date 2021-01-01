@@ -4,7 +4,7 @@
 	if (!Users::isLoggedIn())
 	{
 		echo '<script>alert("You need to login first.")</script>';
-		$user = redirect('login.php');
+		$userObj->redirect('/login.php');
 	}
 	
 	if(isset($_POST['verify']))

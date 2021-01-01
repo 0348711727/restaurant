@@ -73,7 +73,8 @@
 				</div><!--profile-content ends-->
 
 				<div class="profile-footer">
-					<a class="btn btn-success" href="logout.php">Log Out</a>
+					<a class="btn btn-danger" href="logout.php">Log Out</a>
+					<a class="btn btn-success" href="index.php">Go Back To Restaurant</a>
 					<!-- <button class="log-out" onclick="location.href='includes/logout.php';">Log out</button> -->
 					<button class="setting" onclick="location.href='account/settings';">Settings</button>
 				</div><!--profile-footer ends-->
