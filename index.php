@@ -95,8 +95,16 @@
                   <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                   <li class="nav-item"><a class="nav-link" href="home.php">
                   <?php 
-                    if(isset($_SESSION['user'])){echo $_SESSION["name"];}else{echo $_SESSION['firstname'].' '.$_SESSION['lastname'];} 
-                  ?></a></li>
+                    if(isset($_SESSION['user']))
+                    {
+                      echo $_SESSION["name"];
+                    }
+                    else
+                    {
+                      echo $_SESSION['firstname'].' '.$_SESSION['lastname'];
+                    } 
+                  ?>
+                  </a></li>
 
               <?php }
               else

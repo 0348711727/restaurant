@@ -34,7 +34,7 @@
 						//login
                         $_SESSION['user_id'] = $user->user_id ;
                         $_SESSION['firstname'] = $user->firstName ;
-                        $_SESSION['lastname'] = $user->lastName;
+                        $_SESSION['lastname'] = $user->lastNWame;
                         $_SESSION['phone'] = $user->phone;
                         $_SESSION['email'] = $user->email;
                         // $_SESSION['timenow'] = date("Y-M-D H:i:s");
