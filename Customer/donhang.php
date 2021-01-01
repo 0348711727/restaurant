@@ -24,7 +24,7 @@
     }
     else
     {
-        echo "<script>window.location='index.php';</script>";
+        echo "<script>window.location='login.php';</script>";
     }
     ?>
 </head>
