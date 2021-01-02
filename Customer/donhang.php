@@ -69,6 +69,20 @@ $ta=$p-> themxoasua($sql);
                             echo "Đã thanh toán";
                         }
                         ?></td>
+            <td><?php 
+            $val['tgnhan'] = str_replace("/", "-", $val['tgnhan']);
+            $today= strtotime('today');
+            $enday = strtotime($val['tgnhan']);
+            if($enday - $today >= 7200)
+            {
+                echo "Hủy phòng";
+            }
+            else
+            {
+                echo "Không cho phép hủy";
+            }
+
+                        ?></td>
 			</tr>
 		<?php } ?>
 </table>

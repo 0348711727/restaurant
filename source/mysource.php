@@ -155,10 +155,10 @@ class restaurant
 		return $last_id;
 	}
 	
-	public function chatbot()
+	public function chatbot($i)
 	{	
 		$link = $this->ketnoicsdl();
-		$res = mysqli_query($link,"select * from message");
+		$res = mysqli_query($link,"select * from message where userid = '$i'");
 		if(mysqli_num_rows($res)>0)
 		{
 			$html='';
@@ -185,7 +185,7 @@ class restaurant
 			echo $html;
 		}
 	}
-	public function getdetailroom($id)
+	public function getdetailroom()
 		{
 			$link=$this->ketnoicsdl();
 			$tv =mysqli_query($link, "select * from hoadon");
