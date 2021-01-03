@@ -19,11 +19,14 @@
     $p =new restaurant();
     if(isset($_SESSION['user_id']) || isset($_SESSION['phanquyen']))
     {
-
-    }
-    else if($_SESSION['phanquyen'] == 3)
-    {
-        
+        if($_SESSION['phanquyen'] == 3)
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
     ?>
 </head>
@@ -47,7 +50,7 @@ $ta=$p-> themxoasua($sql);
 		foreach($ta as $key=>$val)
 		{?>
 		<tr>
-            <?php $_POST['firstName'] = $val['firstName'];  ?>
+            <?php $_SESSION['first'] = $val['firstName'];  ?>
             <td><?php echo $val['firstName'].' '.$val['lastName']; ?></td>
 			<td><?php echo $val['thongtin']; ?></td>
 			<td><?php echo $val['gia']; ?></td>

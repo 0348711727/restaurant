@@ -112,6 +112,11 @@ class restaurant
 			$tv2 =mysqli_fetch_all($tv1, MYSQLI_ASSOC);
 			return $tv2;
 		}
+		public function huyphong($sql, $sql2){
+			$link=$this->ketnoicsdl();
+			mysqli_query($link, $sql);
+			mysqli_query($link, $sql2); 
+		}
 		public function getdetailacc($id)
 		{
 			$link=$this->ketnoicsdl();
@@ -145,12 +150,12 @@ class restaurant
 		}
 	public function bookroom($name, $gia, $depart,$returnroom,$songuoi,$inforroom, $userid){
 		$link = $this->ketnoicsdl();
-		$tv1 = mysqli_query($link, "insert into hoadon(id, thongtin, gia, tgnhan, tgtra,songuoi, statusroom, idroom, stt,userid) 
-		value('','$name','$gia','$depart','$returnroom','$songuoi','0', '$inforroom','0', '$userid')");
+		mysqli_query($link, "insert into hoadon(id, thongtin, gia, tgnhan, tgtra,songuoi, statusroom, idroom, stt,userid, trangthaihuyphong) 
+		value('','$name','$gia','$depart','$returnroom','$songuoi','0', '$inforroom','0', '$userid','1')");
 		$last_id = mysqli_insert_id($link);
 		if(isset($last_id))
 		{
-			$tv2 = mysqli_query($link, "update room set stt = 1 where idroom = '$inforroom'");
+			mysqli_query($link, "update room set stt = 1 where idroom = '$inforroom'");
 		}   
 		return $last_id;
 	}
@@ -188,7 +193,7 @@ class restaurant
 	public function getdetailroom()
 		{
 			$link=$this->ketnoicsdl();
-			$tv =mysqli_query($link, "select * from hoadon");
+			$tv =mysqli_query($link, "select * from hoadon h join users u on h.userid = u.user_id");
 			return $tv;
 		}
 	}

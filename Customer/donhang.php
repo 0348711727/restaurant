@@ -14,6 +14,8 @@
     </style>
     <base href="http://localhost:88/restaurant/">
     <link rel="stylesheet" href="./css/style.css">
+    <!-- CSS only -->
+
     <?php
     session_start();
     include('../source/mysource.php');    
@@ -43,6 +45,7 @@ $ta=$p-> themxoasua($sql);
 		<th>Số người</th>
         <th>Trạng thái nhận phòng</th>
         <th>Trạng thái thanh toán</th>
+        <th>Trạng thái hủy phòng</th>
 	</tr>
 	<?php
 		foreach($ta as $key=>$val)
@@ -73,9 +76,14 @@ $ta=$p-> themxoasua($sql);
             $val['tgnhan'] = str_replace("/", "-", $val['tgnhan']);
             $today= strtotime('today');
             $enday = strtotime($val['tgnhan']);
-            if($enday - $today >= 7200)
+            if($enday - $today >= 7200 && $val['trangthaihuyphong'] == 1)
             {
-                echo "Hủy phòng";
+                echo "<a class='btn btn-danger' href='Customer/huyphong.php?id=".$val['id']."'>Hủy phòng</a>";
+             
+            }
+            else if($val['trangthaihuyphong'] == 0)
+            {
+                echo "Phòng đã bị hủy";
             }
             else
             {
@@ -86,21 +94,6 @@ $ta=$p-> themxoasua($sql);
 			</tr>
 		<?php } ?>
 </table>
-<?php
-// if(isset($_POST['user']))
-// {
-// 	$id=$_GET['id'];
-// 	$name = $_POST['fullname'];
-// 	$user = $_POST['user'];
-// 	$email =$_POST['email'];
-// 	$phanquyen= $_POST['permission'];
-// 	$p->updatedetailacc($id, $name, $user, $email, $phanquyen);
-// }
-// if(isset($_POST['user'])||isset($_POST['email'])){
-// 	echo "<script>alert('Cập nhật thành công');</script>";
-// 	echo '<script>window.location= "admin-template.php";</script>';
-// }
-?>
 <div class="doremon">
        <div class="item">
         
