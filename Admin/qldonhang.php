@@ -1,10 +1,68 @@
 <html>
 <head>
+<?php
+include '../core/init.php';
+include('../source/mysource.php');
+if(isset($_SESSION['user_id']))
+  {
+        echo "<script>window.location='index.php'</script>";
+  }
+  elseif(isset($_SESSION['phanquyen']))
+  {
+      if($_SESSION['phanquyen'] == 3)
+      {
+        
+      }
+      else
+      {
+        echo "<script>window.location='./adminlogin.php';</script>";
+      }
+  }
+?>
+<base href="http://localhost:88/restaurant/"/>
+<link rel="stylesheet" href="assets/css/stylead.css">
+<link rel="stylesheet" href="assets/css/updatenv.css">
+</head>
+<body>
+<header>
+<label for="">
+	<i class="fas fa-bar" id="sidebar_btn"></i>
+</label>
+<div class="left-area"> 
+<h3>Hello <?php echo $_SESSION['name']; ?></h3>
+
+</div>
+<div class="right-area">
+<a href="logout.php" class="logout_btn">Logout</a>
+</div>
+</header>
+	<div class="sidebar">
+	<center>
+
+	<img src="assets/images/<?php echo $_SESSION['anhdaidien'];?>" class="profile-image" alt="Anh dai dien">
+	<h4><?php echo $_SESSION['name']; ?></h4>
+	</center>
+<?php 
+
+$p =new restaurant();
+if(isset($_SESSION['phanquyen'])|| isset($_SESSION['user_id']))
+{
+	if($_SESSION['phanquyen'] == 2 || $_SESSION['phanquyen'] == 3)
+	{
+		
+	}
+	else
+	{
+		echo "<script>window.location='adminlogin.php'</script>";
+	}
+}
+?>
     <base href="http://localhost:88/restaurant/">
     <style>
         table{
             margin:auto;
-            margin-top: 50px;;
+            margin-top:-150px;
+			margin-left: 450px;
         }
         table, tr, th, td{
             border: 1px solid black;
@@ -14,8 +72,6 @@
         }    
     </style>
     <?php
-    session_start();
-    include('../source/mysource.php');    
     $p =new restaurant();
     if(isset($_SESSION['user_id']) || isset($_SESSION['phanquyen']))
     {
@@ -25,7 +81,7 @@
         }
         else
         {
-            
+
         }
     }
     ?>
@@ -45,6 +101,7 @@ $ta=$p-> themxoasua($sql);
 		<th>Số người</th>
         <th>Trạng thái nhận phòng</th>
         <th>Trạng thái thanh toán</th>
+        <th>Action</th>
 	</tr>
 	<?php
 		foreach($ta as $key=>$val)
