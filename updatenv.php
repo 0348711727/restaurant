@@ -83,7 +83,6 @@ $ta=$p-> themxoasua($sql);
 		<th>User</th>
 		<th>Email</th>
 		<th>Phân Quyền</th>
-		<th>Hình Đại Diện</th>
 		<th>Action</th>
 	</tr>
 	<?php
@@ -94,7 +93,6 @@ $ta=$p-> themxoasua($sql);
 			<td><?php echo $val['user']; ?></td>
 			<td><?php echo $val['email']; ?></td>
 			<td><?php echo $val['phanquyen']; ?></td>
-			<td><a href="assets/images/<?php echo $val["anhdaidien"]; ?>"></a></td>
 			<td><a href="edit.php?id=<?php echo $val['id']; ?>">Sửa</td>
 			</tr>
 		<?php } ?>
