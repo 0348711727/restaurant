@@ -49,8 +49,7 @@
 		{
 			if($_SESSION['phanquyen'] == 3)
 			{
-            echo '<a href="#">Thống kê doanh thu</a><br>';
-            echo '<a href="#">Quản lý đơn hàng</a><br>';
+            echo '<a href="Admin/qldonhang.php">Quản lý đơn đặt phòng</a><br>';
             echo '<a href="#">Quản lý hóa đơn</a><br>';
 		}
 	}
