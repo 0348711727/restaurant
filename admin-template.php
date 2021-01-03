@@ -3,6 +3,7 @@
   include('source/mysource.php');
   $p = new restaurant();
   $p -> ketnoicsdl();
+  
   if(isset($_SESSION['user_id']))
   {
         echo "<script>window.location='index.php'</script>";
@@ -49,9 +50,11 @@
 		{
 			if($_SESSION['phanquyen'] == 3)
 			{
-            echo '<a href="#">Thống kê doanh thu</a><br>';
-            echo '<a href="#">Quản lý đơn hàng</a><br>';
-            echo '<a href="#">Quản lý hóa đơn</a><br>';
+            echo '<a href="">Thống kê doanh thu</a><br>';
+            echo '<a href="">Quản lý đơn hàng</a><br>';
+            echo '<a href="qldatmon.php">Quản lý đặt món</a><br>';
+            echo '<a href="">Quản lý hóa đơn</a><br>';
+            
 		}
 	}
 		else{

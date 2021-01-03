@@ -17,9 +17,21 @@ if (!Users::isLoggedIn())
 
 if(isset($_POST['sub_booking']))
 {
-    
+    $reservation_name = $_POST['reservation_name'];
+    $reservation_phone = $_POST['reservation_phone'];
+    $reservation_date = $_POST['reservation_date'];
+    $reservation_time = $_POST['reservation_time'];
+    $reservation_email = $_POST['reservation_email'];
+    $reservation_table = $_POST['reservation_table'];
+    $reservation_dishname = $_POST['reservation_dishname'];
+    $reservation_quantity = $_POST['reservation_quantity'];
+    echo '<script>alert("Booking completed !.")</script>';
     $tableObj->insertBooking();
-    echo '<script>alert("booking completed.")</script>';
+    $results = $tableObj->changeStatusTable();
     $userObj->redirect('/index.php');
+}
+else
+{
+    $userObj->redirect('/booking-table.php');
 }
 ?>

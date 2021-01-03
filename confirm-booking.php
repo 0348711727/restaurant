@@ -38,40 +38,44 @@ if (isset($_POST['confirm']))
         <form action="success.php" method="POST">
             <div class="container">
                 <label for="">Email address</label>
-                <input type="email" class="form-control" value="<?php echo $reservation_email ?>" placeholder="Enter email" readonly>
+                <input type="email" class="form-control" name="reservation_email" value="<?php echo $reservation_email ?>" placeholder="Enter email" readonly>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="container">
                 <label for="">Name</label>
-                <input type="text" class="form-control" value="<?php echo $reservation_name;?>" readonly>
+                <input type="text" class="form-control" name="reservation_name" value="<?php echo $reservation_name;?>" readonly>
             </div>
             <div class="container">
                 <label for="">Phone</label>
-                <input type="text" class="form-control" value="<?php echo $reservation_phone;?>" readonly>
+                <input type="text" class="form-control" name="reservation_phone" value="<?php echo $reservation_phone;?>" readonly>
             </div>
             <div class="container">
                 <label for="">Date</label>
-                <input type="text" class="form-control" value="<?php echo $reservation_date;?>"  readonly>
+                <input type="text" class="form-control" name="reservation_date" value="<?php echo $reservation_date;?>"  readonly>
             </div>
             <div class="container">
                 <label for="">Time</label>
-                <input type="text" class="form-control" value="<?php echo $reservation_time;?>"  readonly>
+                <input type="text" class="form-control" name="reservation_time" value="<?php echo $reservation_time;?>"  readonly>
             </div>
             <div class="container">
                 <label for="">Table Booking</label>
-                <input type="text" class="form-control" value="<?php echo $reservation_table;?>"  readonly>
+                <input type="text" class="form-control" name="reservation_table" value="<?php echo $reservation_table;?>"  readonly>
             </div>
             <div class="container">
                 <?php for($i = 0; $i < count($reservation_dishname); $i++)
                 { 
-                    if(($reservation_quantity[$i]) >1){
+                    if(($reservation_quantity[$i]) > 0 )
+                    {
+                        ?>
+                            <label for="">Món</label>
+                                <input type="text" class="form-control" name="reservation_dishname" value="<?php echo $reservation_dishname[$i];?>"  readonly>
+                            <label for="">Số Lượng</label>
+                                <input type="text" class="form-control" name="reservation_quantity" value="<?php echo $reservation_quantity[$i];?>"  readonly>
+                            <br>
+                        <?php 
+                    }
+                } 
                 ?>
-                    <label for="">Món</label>
-                        <input type="text" class="form-control" value="<?php echo $reservation_dishname[$i];?>"  readonly>
-                    <label for="">Số Lượng</label>
-                        <input type="text" class="form-control" value="<?php echo $reservation_quantity[$i];?>"  readonly>
-                    <br>
-                <?php } } ?>
                 
             </div>
             <div class="container">

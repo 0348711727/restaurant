@@ -31,12 +31,12 @@ if (isset($_POST['choosetable'])) {
     <center>
         <form action="confirm-booking.php" method="POST" id="formConfirm">
             <div class="container" style="border: 1px solid black;">
-                <input type="text" name="reservation_name" value="<?php echo $reservation_name; ?>" />
-                <input type="text" name="reservation_phone" value="<?php echo $reservation_phone; ?>" />
-                <input type="text" name="reservation_date" value="<?php echo $reservation_date; ?>" />
-                <input type="text" name="reservation_time" value="<?php echo $reservation_time; ?>" />
-                <input type="text" name="reservation_email" value="<?php echo $reservation_email; ?>" />
-                <input type="text" name="reservation_table" value="<?php echo $reservation_table; ?>" />
+                <input type="hidden" name="reservation_name" value="<?php echo $reservation_name; ?>" />
+                <input type="hidden" name="reservation_phone" value="<?php echo $reservation_phone; ?>" />
+                <input type="hidden" name="reservation_date" value="<?php echo $reservation_date; ?>" />
+                <input type="hidden" name="reservation_time" value="<?php echo $reservation_time; ?>" />
+                <input type="hidden" name="reservation_email" value="<?php echo $reservation_email; ?>" />
+                <input type="hidden" name="reservation_table" value="<?php echo $reservation_table; ?>" />
                 <?php
                 $sql = "select * from dish";
                 $ta = $p->xuatmonan($sql);
