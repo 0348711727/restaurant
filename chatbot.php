@@ -1,4 +1,5 @@
 <?php
+session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 include('core/config.php');
 include('source/mysource.php');
@@ -19,7 +20,7 @@ $p = new restaurant;
       <title>PHP Chatbot</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	  <link href="stylebot.css" rel="stylesheet">
+	  <link href="assets/css/stylebot.css" rel="stylesheet">
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
    </head>
@@ -32,9 +33,10 @@ $p = new restaurant;
                   <div class="card-body messages-box">
 					 <ul class="list-unstyled messages-list">
 							<?php
-							if($p->chatbot())
+							if(isset($_SESSION['user_id']))
 							{
-
+								$i = $_SESSION['user_id'];
+								$p->chatbot($i);
 							}
 							else{
 								?>

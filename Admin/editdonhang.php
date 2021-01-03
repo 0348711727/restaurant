@@ -5,9 +5,21 @@
 	$detailacc= $p->getdetailroom($id);
     foreach($detailacc as $key =>$val)
 ?>
+<style>
+        table{
+            margin:auto;
+            margin-top: 50px;;
+        }
+        table, tr, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+		}
+</style>
 <div class="content">
 	<form action="qldonhang.php?id=<?php echo $val['id']; ?>" method="POST">
-		<table>
+		<table >
 			<tr>
 				<td colspan="2">
 					<h3>Cập nhật trạng thái phòng</h3>
@@ -16,7 +28,7 @@
 			</tr>
 			<tr>
 				<td nowrap="nowrap">Tên khách hàng :</td>
-				<td><input name="fullname" id="fullname" value="<?php echo $_POST['firstName'].' '.$val['lastName'];?> "readonly="readonly"></td>
+				<td><input name="fullname" id="fullname" value="<?php echo $val['firstName'].' '.$val['lastName'];?> "readonly="readonly"></td>
 			</tr>	
 			<tr>
 				<td nowrap="nowrap">Tên phòng :</td>
