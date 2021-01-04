@@ -11,6 +11,7 @@
 	$userObj   = new Users;
 	$verifyObj = new Verify;
 	$tableObj  = new Table;
-	//session
+	$adminObj  = new Admin;
+		//session
 	session_start(); 
 ?>

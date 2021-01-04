@@ -6,7 +6,6 @@
 		{
 			$this -> db = Database::instance();
 		}
-
 		public function get($table,$fields = array()){
 			$columns = implode(', ', array_keys($fields));
 			//sql query
@@ -84,11 +83,11 @@
 			}
 		}
 		public function emailExist($email){
-			$email = $this -> get('users',array('email' => $email));
+			$email = $this->get('users',array('email' => $email));
 			return ((!empty($email))) ? $email : false ;
 		}
 		public function usernameExist($username){
-			$username = $this -> get('users',array('username' => $username));
+			$username = $this->get('users',array('username' => $username));
 			return ((!empty($username))) ? $username : false ;
 		}
 		public function hash($password)
@@ -101,7 +100,7 @@
 		}
 		public function userData($user_id)
 		{
-			return $this -> get('users',array('user_id' => $user_id));
+			return $this->get('users',array('user_id' => $user_id));
 		}
 		public function logout()
 		{

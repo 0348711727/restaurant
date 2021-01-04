@@ -9,7 +9,7 @@
 			$this -> db = Database::instance();
         }
 
-        public function get()
+        public function getAvailable()
         {
             if(isset($_SESSION['res_id']))
             {
@@ -36,6 +36,20 @@
                 $reservation_quantity = $_POST['reservation_quantity'];
                 $sql = "INSERT INTO `booking_info` (`id`, `res_email`, `res_name`, `res_phone`, `res_date`, `res_time`, `res_table`, `res_dish`, `res_quantity`) 
                 VALUES ('', '$reservation_email', '$reservation_name', '$reservation_phone', '$reservation_date', '$reservation_time', '$reservation_table', '$reservation_dishname', '$reservation_quantity;');" ;
+                $result = $this -> db -> prepare($sql);
+                $result->execute();
+                $results = $result->fetchAll(); 
+                return $results;
+            }
+            
+        }
+        public function changeStatusTable()
+        {
+            if(isset($_SESSION['res_id']))
+            {
+                $res_id = $_SESSION['res_id'];
+                $reservation_table = $_POST['reservation_table'];
+                $sql = "UPDATE `restaurant_table` SET `status` = '1' WHERE `restaurant_table`.`id` = $reservation_table;";
                 $result = $this -> db -> prepare($sql);
                 $result->execute();
                 $results = $result->fetchAll(); 

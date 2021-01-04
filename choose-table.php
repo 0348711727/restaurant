@@ -72,11 +72,11 @@ if (isset($_POST['reservation']))
                       <label for="">Available Table</label>
                       <select class="form-control" name="reservation_table">
                           <?php
-                            $results = $tableObj->get();
+                            $results = $tableObj->getAvailable();
                             foreach($results as $table_id)
                             {
                               ?><option>  <?php
-                                echo $table_id['table_name'];
+                                echo $table_id['id'];
                                 echo '<br>';
                               ?></option> <?php
                             }
