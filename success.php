@@ -29,6 +29,7 @@ if(isset($_POST['sub_booking']))
     $tableObj->insertBooking();
     $results = $tableObj->changeStatusTable();
     $userObj->redirect('/index.php');
+    echo '<script>alert("Booking completed !.")</script>';
 }
 else
 {
