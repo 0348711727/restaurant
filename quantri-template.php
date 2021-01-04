@@ -59,7 +59,7 @@ table
 	<h4><?php echo $_SESSION['name']; ?></h4>
 	</center>
 	<?php 
-		if(isset($_SESSION['user']))
+		if(isset($_SESSION['user']) || isset($_SESSION['phanquyen']))
 		{
 			if($_SESSION['phanquyen']==5)
 			{

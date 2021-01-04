@@ -50,7 +50,6 @@
 		{
 			if($_SESSION['phanquyen'] == 2){
             echo '<a href="Admin/qldonhang.php">Xem hóa đơn</a><br>';
-			echo '<a href="#">Thống kê doanh thu</a><br>';
 		}
 		}
 		else{
